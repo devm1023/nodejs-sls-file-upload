@@ -6,7 +6,6 @@ const { v4: uuid } = require('uuid');
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
-const defaulBucketName = 'apollo-jpg-upload-demo-dev-us-east-1-artifacts';
 
 module.exports = {
   Query: {
