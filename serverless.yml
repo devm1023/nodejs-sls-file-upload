@@ -6,9 +6,9 @@ provider:
   stage: ${opt:stage, "dev"}
   region: ${opt:region, "us-east-1"}
 
-  apiGateway:
-    binaryMediaTypes:
-      - 'multipart/form-data'
+  # apiGateway:
+  #   binaryMediaTypes:
+  #     - '*/*'
 
   iamRoleStatements:
     - Effect: "Allow"
