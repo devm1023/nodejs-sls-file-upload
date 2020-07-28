@@ -5,11 +5,7 @@ provider:
   runtime: nodejs12.x
   stage: ${opt:stage, "dev"}
   region: ${opt:region, "us-east-1"}
-
-  # apiGateway:
-  #   binaryMediaTypes:
-  #     - '*/*'
-
+  environment: ${file(env.yml)}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -40,17 +36,13 @@ functions:
           path: src/server
           method: get
           cors: true
-
-custom:
-  basename: ${self:service}-${self:provider.stage}
-  bucketname: ${self:custom.basename}-${self:provider.region}-artifacts
   
 resources:
  Resources:
    TargetBucket:
      Type: AWS::S3::Bucket
      Properties:
-       BucketName: ${self:custom.bucketname}
+       BucketName: ${self:provider.environment.BUCKET_NAME}
        CorsConfiguration:
         CorsRules:
           -
